@@ -7,9 +7,18 @@
 int main(void) {
   printf("Please input a string: ");
   string s = GetString();
+  // if GetString happens to return null, then we
+  // do not want to try iterating over characters
+  // that are not there. GetString would return null
+  // if either the string were too large that it
+  // wouldn't fit in memory or if the user didn't
+  // type in a string at all. The following if
+  // statement would fix this problem:
 
-  for (int i = 0; i < strlen(s); i++) {
-    printf("%c\n", s[i]);
+  if (s != NULL) {
+    for (int i = 0; i < strlen(s); i++) {
+      printf("%c\n", s[i]);
+    }
   }
 }
 
