@@ -21,28 +21,27 @@ int main(void) {
         change = GetFloat();
     }
     while (change <= 0);
-    
+
     int converted_change = change * 100;
-    
+
     // The round function allows for the numbers to be rounded down to their
     // nearest integer
-    // 
+    //
     // The modulo function gives the remainder, or the remaining amount of change
-    // that must be dealt with 
-    
+    // that must be dealt with
+
     number_of_quarters = round(converted_change / quarter);
-    // printf("Quarters: %i\n", number_of_quarters);
+    printf("Quarters: %i\n", number_of_quarters);
     remaining_change = converted_change % quarter;
     number_of_dimes = round(remaining_change / dime);
-    // printf("Dimes: %i\n", number_of_dimes);
+    printf("Dimes: %i\n", number_of_dimes);
     remaining_change = remaining_change % dime;
     number_of_nickels = round(remaining_change / nickel);
-    // printf("Nickels: %i\n", number_of_nickels);
+    printf("Nickels: %i\n", number_of_nickels);
     remaining_change = remaining_change % nickel;
     number_of_pennies = round(remaining_change / penny);
-    // printf("Pennies: %i\n", number_of_pennies);
-    
+    printf("Pennies: %i\n", number_of_pennies);
     number_of_coins = number_of_quarters + number_of_dimes + number_of_nickels + number_of_pennies;
-    printf("%i\n", number_of_coins);
-    
+    printf("Total Number of Coins: %i\n", number_of_coins);
+
 }
