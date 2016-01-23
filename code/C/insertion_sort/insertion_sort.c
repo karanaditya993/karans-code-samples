@@ -17,7 +17,7 @@ int main(void) {
     arr[i] = GetInt();
   }
 
-  for (int x=1 ; x <= n-1; x++) {
+  for (int x=0 ; x < n; x++) {
       index = x;
       while ( index > 0 && arr[index] < arr[index-1]) {
         temp = arr[index];
