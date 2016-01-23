@@ -11,20 +11,19 @@
 int main(void) {
   printf("Please enter the length of your array: ");
   int n = GetInt();
-  int temp, arr[n];
-  int x;
+  int temp, arr[n], index;
   for (int i=0; i < n; i++) {
     printf("Enter element %i: ", (i+1));
     arr[i] = GetInt();
   }
 
-  for (int c=1 ; c <= n-1; c++) {
-      x = c;
-      while ( x > 0 && arr[x] < arr[x-1]) {
-        temp = arr[x];
-        arr[x] = arr[x-1];
-        arr[x-1] = temp;
-        x--;
+  for (int x=1 ; x <= n-1; x++) {
+      index = x;
+      while ( index > 0 && arr[index] < arr[index-1]) {
+        temp = arr[index];
+        arr[index] = arr[index-1];
+        arr[index-1] = temp;
+        index--;
       }
     }
   for (int i=0; i < n; i++) {
