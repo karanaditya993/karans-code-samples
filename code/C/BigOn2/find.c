@@ -38,11 +38,17 @@ int main(int argc, string argv[])
     int haystack[MAX];
     for (size = 0; size < MAX; size++)
     {
-      printf("\nhaystack[%i] = ", size);
-      haystack[size] = GetInt();
-    }
-    printf("\n");
+        // wait for hay until EOF
+        printf("\nhaystack[%d] = ", size);
+        int straw = GetInt();
+        if (straw == INT_MAX)
+        {
+            break;
+        }
 
+        // add hay to stack
+        haystack[size] = straw;
+    }
     // sort the haystack
     sort(haystack, size);
 

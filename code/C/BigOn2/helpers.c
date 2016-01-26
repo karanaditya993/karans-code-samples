@@ -15,18 +15,32 @@
 /**
  * Returns true if value is in array of n values, else false.
  */
-bool search(int value, int values[], int n)
-{
-    //Todo: implement a searching algorithm
-    if (n < 0) {
-        return false;
-    }
-    for (int i=0; i < n; i++) {
-        if (values[i] == value) {
-            return true;
-        }
-    }
+int findMidPoint(int min, int max);
+bool binarySearch(int key, int array[], int min, int max);
+
+bool search(int value, int values[], int n) {
+  if (value < 0){
     return false;
+  }
+  else {
+    return binarySearch(value, values, 0, n-1);
+  }
+}
+
+bool binarySearch(int key, int array[], int min, int max) {
+  int midpoint = findMidPoint(min, max);
+  if (max >= min) {
+    if (array[midpoint] == key) {
+      return true;
+    }
+    else if (array[midpoint] > key) {
+      return binarySearch(key, array, min, midpoint-1);
+    }
+    else if (array[midpoint] < key) {
+      return binarySearch(key, array, midpoint+1, max);
+    }
+  }
+  return false;
 }
 
 /**
@@ -36,7 +50,7 @@ void sort(int values[], int n)
 {
   //Todo: implement an O(n^2) sorting algorithm
   int temp;
-  
+
   // Bubble sort function
   for (int i=0; i < n; i++) {
     for (int j=0; j < n-1; j++) {
@@ -47,7 +61,14 @@ void sort(int values[], int n)
       }
     }
   }
-  for (int i=0; i < n; i++) {
-    printf("%i ", values[i]);
+}
+
+int findMidPoint(int min, int max) {
+  if (min <= max) {
+    int x = (min + max)/2;
+    return x;
+  }
+  else {
+    return -1;
   }
 }
