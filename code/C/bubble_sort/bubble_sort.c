@@ -13,7 +13,7 @@ int main(void) {
   printf("Please enter the length of your array: ");
   int n = GetInt();
   int temp, arr[n];
-  int index_of_min;
+  // int index_of_min;
 
   for (int i=0; i < n; i++) {
     printf("Enter element %i: ", (i+1));
