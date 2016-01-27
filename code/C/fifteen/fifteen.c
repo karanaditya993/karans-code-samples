@@ -33,6 +33,10 @@ int board[DIM_MAX][DIM_MAX];
 // dimensions
 int d;
 
+// win check
+int win[DIM_MAX][DIM_MAX];
+
+
 // prototypes
 void clear(void);
 void greet(void);
@@ -105,35 +109,34 @@ int main(int argc, string argv[])
         }
 
         // prompt for move
-        printf("Tile to move: ");
-        int tile = GetInt();
+          printf("Tile to move: ");
+          int tile = GetInt();
 
         // quit if user inputs 0 (for testing)
-        if (tile == 0)
-        {
+          if (tile == 0)
+          {
             break;
-        }
+          }
 
         // log move (for testing)
-        fprintf(file, "%i\n", tile);
-        fflush(file);
+          fprintf(file, "%i\n", tile);
+          fflush(file);
 
         // move if possible, else report illegality
-        if (!move(tile))
-        {
+          if (!move(tile))
+          {
             printf("\nIllegal move.\n");
             usleep(500000);
-        }
+          }
 
         // sleep thread for animation's sake
-        usleep(500000);
-    }
+          usleep(500000);
+      }
 
     // close log
-    fclose(file);
-
+      fclose(file);
     // success
-    return 0;
+  return 0;
 }
 
 /**
@@ -254,15 +257,17 @@ bool move(int tile)
  * else false.
  */
 bool won(void) {
-    for (int i = 0; i < d; i++) {
-        for (int j = 0; j < d; j++) {
-            if ((i == (d-1)) && (j == (d-2))) {
-                return true;
-            }
-            else if (board[i][j] != (board[i][j+1] - 1)) {
-                return false;
-            }
-        }
+  for(int i=0;i<d;i++) {
+    for(int j=0; j<d; j++) {
+      win[i][j]= (i*d)+(j+1);
+
+      if(win[i][j]==d*d) {
+        win[i][j]=0;
+      }
+      if(board[i][j] != win[i][j]) {
+       return 0;
+      }
     }
-    return true;
+  }
+  return 1;
 }
