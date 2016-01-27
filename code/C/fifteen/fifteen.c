@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 // constants
 #define DIM_MIN 3
@@ -39,6 +40,7 @@ void init(void);
 void draw(void);
 bool move(int tile);
 bool won(void);
+
 
 int main(int argc, string argv[])
 {
@@ -170,8 +172,13 @@ void init(void)
 
     for (int i = 0; i < d; i++) {
       for (int j = 0; j < d; j++) {
-        board[i][j] = tile_value;
-        tile_value--;
+        if ((i == (d-1)) && (j == (d-1))) {
+          board[i][j] = 95;
+        }
+        else {
+          board[i][j] = tile_value;
+          tile_value--;
+        }
       }
     }
     // if the dimension is divisible by 2 then
@@ -191,8 +198,8 @@ void draw(void)
 {
   for (int i = 0; i < d; i++) {
     for (int j = 0; j < d; j++) {
-      if (board[i][j] == 0) {
-        printf("[ __ ]");
+      if (board[i][j] == 95) {
+        printf("[ %c ]", board[i][j]);
       }
       else {
         printf("[ %2d ]", board[i][j]);
@@ -208,8 +215,38 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
-    return false;
+  int temp;
+  for (int i = 0; i < d; i++) {
+    for (int j = 0; j < d; j++) {
+      if (board[i][j] == 95) {
+        if(board[i][j-1]== tile) {
+          temp=board[i][j-1];
+          board[i][j-1]=board[i][j];
+          board[i][j]=temp;
+          return true;
+  			}
+  			else if(board[i-1][j]==tile) {
+  				temp=board[i-1][j];
+  				board[i-1][j]=board[i][j];
+  				board[i][j]=temp;
+  				return true;
+  			}
+  			else if(board[i+1][j]==tile) {
+  				temp=board[i+1][j];
+  				board[i+1][j]=board[i][j];
+  				board[i][j]=temp;
+  				return true;
+  			}
+  			else if(board[i][j+1]==tile) {
+  				temp=board[i][j+1];
+  				board[i][j+1]=board[i][j];
+  				board[i][j]=temp;
+          return true;
+  			}
+      }
+    }
+  }
+  return false;
 }
 
 /**
@@ -218,6 +255,16 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
-    return false;
+    int stop = d;
+    for (int i = 0; i < d; i++) {
+        for (int j = 0; j < stop; j++) {
+            if (i == (d-1)) {
+                stop = (d-1);
+            }
+            if (board[i][j+1] != (board[i][j] + 1)) {
+                return false;
+            }
+        }
+    }
+return true;
 }
