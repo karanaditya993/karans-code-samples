@@ -173,7 +173,7 @@ void init(void)
     for (int i = 0; i < d; i++) {
       for (int j = 0; j < d; j++) {
         if ((i == (d-1)) && (j == (d-1))) {
-          board[i][j] = 95;
+          board[i][j] = 0;
         }
         else {
           board[i][j] = tile_value;
@@ -198,8 +198,8 @@ void draw(void)
 {
   for (int i = 0; i < d; i++) {
     for (int j = 0; j < d; j++) {
-      if (board[i][j] == 95) {
-        printf("[ %c ]", board[i][j]);
+      if (board[i][j] == 0) {
+        printf("[ %c ]", (char) 95);
       }
       else {
         printf("[ %2d ]", board[i][j]);
@@ -218,7 +218,7 @@ bool move(int tile)
   int temp;
   for (int i = 0; i < d; i++) {
     for (int j = 0; j < d; j++) {
-      if (board[i][j] == 95) {
+      if (board[i][j] == 0) {
         if(board[i][j-1]== tile) {
           temp=board[i][j-1];
           board[i][j-1]=board[i][j];
@@ -253,18 +253,16 @@ bool move(int tile)
  * Returns true if game is won (i.e., board is in winning configuration),
  * else false.
  */
-bool won(void)
-{
-    int stop = d;
+bool won(void) {
     for (int i = 0; i < d; i++) {
-        for (int j = 0; j < stop; j++) {
-            if (i == (d-1)) {
-                stop = (d-1);
+        for (int j = 0; j < d; j++) {
+            if ((i == (d-1)) && (j == (d-2))) {
+                return true;
             }
-            if (board[i][j+1] != (board[i][j] + 1)) {
+            else if (board[i][j] != (board[i][j+1] - 1)) {
                 return false;
             }
         }
     }
-return true;
+    return true;
 }
