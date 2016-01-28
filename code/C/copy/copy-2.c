@@ -31,7 +31,8 @@ int main(void) {
   // capitalize the first letter of the t string
   printf("Capitalizing copy...\n");
   if (strlen(t) > 0) {
-    t[0] = toupper(t[0]);
+    // pointer
+    *t = toupper(*t);
   }
 
   printf("Original: %s\n", s);
