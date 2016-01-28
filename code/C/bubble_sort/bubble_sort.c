@@ -19,7 +19,6 @@ int main(void) {
     printf("Enter element %i: ", (i+1));
     arr[i] = GetInt();
   }
-
   for (int x=0; x < n; x++) {
     for (int y=0; y < n-1; y++) {
       if (arr[y] > arr[y+1]) {
