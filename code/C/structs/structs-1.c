@@ -17,11 +17,18 @@ int main(void) {
     printf("\n");
   }
 
-  FILE* file = fopen("students.csv", "a");
+  FILE* file = fopen("students.txt", "w");
 
   if (file != NULL) {
     for (int i = 0; i < STUDENTS; i++) {
-      fprintf(file, "%s, %s\n", students[i].name, students[i].dorm);
+      fprintf(file, "%s lived in %s\n", students[i].name, students[i].dorm);
     }
+  }
+
+  // Free the memory that was allocated
+  // by GetString()
+  for (int i = 0; i < STUDENTS; i++){
+    free(students[i].name);
+    free(students[i].dorm);
   }
 }
