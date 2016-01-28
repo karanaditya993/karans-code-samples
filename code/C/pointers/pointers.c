@@ -1,24 +1,27 @@
+// Prompt user for a string and then print
+// that string one character line per line
+
+// DO NOT TREAT STRING AS AN ARRAY, USE POINTERS
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <cs50.h>
 
 int main(void) {
-  // Declare addresses of int x and y...aka pointers
-  int* x;
-  int* y;
 
-  // Allocate enough memory to store an int
-  // and store the address of that memory in x
-  x = malloc(sizeof(int));
+  // pointer to the address of the first character
+  // in GetString() assigned to s
+  char* s = GetString();
 
-  // Go to the address of x and store the value
-  // 42 in it
-  *x = 42;
-  // Go to the address of y and store the value
-  // of 42 in it. The problem is we do not have
-  // memory allocated for y, therefore we must
-  // set up y to have the same pointee as *x
-  // y = x;
-  *y = 13;
-  printf("x: %d, y: %d", *x, *y);
-  printf("\n");
+  if (s == NULL) {
+    return 1;
+  }
+
+  for (int i = 0, n = strlen(s); i < n; i++) {
+    printf("%c\n", *(s+i));
+    // Go to the address at s and get that value
+    // (that is what the star is doing), and do
+    // that for each letter until the i increments
+    // to equal the length of the string
+  }
 }

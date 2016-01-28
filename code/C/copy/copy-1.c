@@ -21,6 +21,7 @@ int main(void) {
   // sizeof(char) is just multiplying by 1 byte
 
   if (t == NULL) {
+    free(s);
     return 1;
   }
   // copy the material in s to the malloc t string

@@ -14,6 +14,7 @@ int main(void) {
   char* t = GetString();
   printf("\n");
 
+// error checking if they equal to NULL
   if (s != NULL & t!= NULL) {
     if (strcmp(s, t) == 0) {
       printf("You typed the same thing!\n");
