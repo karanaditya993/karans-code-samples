@@ -9,6 +9,9 @@
 int main(void) {
   printf("Please enter a sentence: ");
   char* s = GetString();
+  // char* is a pointer that points to the
+  // leading character of the string that you
+  // put in (i.e. the address of the string)
   printf("\n");
 
   printf("Please enter another sentence: ");
