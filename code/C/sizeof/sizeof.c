@@ -5,7 +5,7 @@ int main(void) {
   double d;
   float f;
   int i;
-
+// On oa 32 bit system
   printf("char: %i bytes\n", sizeof(c));
   printf("double: %i bytes\n", sizeof(d));
   printf("float: %i bytes\n", sizeof(f));
