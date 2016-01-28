@@ -1,0 +1,5 @@
+Linked_lists is a data structure that is used in
+several computer programming languages (mostly low level)
+
+Each node is somewhat of an object that has a value and
+a reference node
