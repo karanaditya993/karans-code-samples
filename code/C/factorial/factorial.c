@@ -4,8 +4,9 @@
 int fact(int n);
 
 int main(int argc, string argv[]) {
-  if (argc == 1) {
+  if (argc == 1 || argc > 2) {
     printf("Usage: factorial n\n");
+    return 1;
   }
   else {
     int n = atoi(argv[1]);
