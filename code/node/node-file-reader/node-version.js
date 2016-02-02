@@ -18,4 +18,3 @@ fs.readFile('names.txt', 'utf8', function(err, fileContents){
     console.log(uppercase);
   })
 })
-
