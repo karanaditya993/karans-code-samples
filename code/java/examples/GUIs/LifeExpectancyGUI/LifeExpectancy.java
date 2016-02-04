@@ -10,7 +10,9 @@ public class LifeExpectancy extends PApplet {
   // track of which life expectancy belongs to which country using
   // key value pairs
   HashMap <String, Float> lifeExpMap;
-  // List the type of object that will be stored inside the container class
+
+  // Create a list where the first is allowed to store features
+  // and the second is allowed to store markers
   List <Feature> countries;
   List <Marker> countryMarkers;
 
@@ -34,6 +36,17 @@ public class LifeExpectancy extends PApplet {
   // Red-orange indicates low (near 40)
   // Blue indicates high (near 100)
   private void shadeCountries() {
+    for (Marker marker : countryMarkers) {
+      String countryId = marker.getId();
+      if (lifeExpMap.containsKey(countryId)) {
+        float lifeExpMap = lifeExpMap.get(countryId);
+        int colorLevel = (int) map(lifeExpMap, 40, 90, 10, 255);
+        marker.setColor(color(255-colorLevel), 100, colorlevel);
+      }
+      else {
+        marker.setColor(color(150, 150, 150));
+      }
+    }
 
   }
 
@@ -41,8 +54,29 @@ public class LifeExpectancy extends PApplet {
     // Private helper method that takes in the filename and returns
     // a hashmap of life expectancies with their respective countries
 
-    // Declare hashmap that will be returned
+    // Declare construct that will construct the map object that will
+    // be returned
     HashMap<String, Float> lifeExpMap = new HashMap<String, Float>();
+
+    // Read in all the fields in the file one row at a time and stick
+    // content of row inside array of strings
+    String[] rows = loadStrings(fileName);
+
+    // Iterate each row at a time and parse away only the relevant information
+    for (String row : rows) {
+      // Split row of strings into array of fields
+      String[] columns = row.split(",");
+      if (...) {
+        lifeExpMap.put(columns[4], Float.parseFloat(columns[5]));
+      }
+    }
+    return lifeExpMap;
+  }
+
+
+
+
+
 
   }
 }
