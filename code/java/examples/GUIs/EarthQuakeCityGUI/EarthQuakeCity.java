@@ -141,5 +141,24 @@ public class EarthquakeCityMap extends PApplet {
 	// TODO: Implement this method to draw the key
 	private void addKey()
 	{
+    fill(255, 255, 245); //Create white box
+    rect(25, 50, 150, 250); //Box is 25 x position, 50 y position, width is 150 and height is 250
+
+    fill(0); //Gets ready for textbook fill
+    textAlign(LEFT, CENTER);
+    textSize(12);
+    text("Earthquake Key", 50, 75);
+
+    fill(color(255, 0, 0)); //red
+    ellipse(50, 125, 15, 15); //(x coordinate, y coordinate, width, height)   )
+    fill(color(255, 255, 0)); //yellow
+    ellipse(50, 175, 10, 10);
+    fill(color(0, 0, 255));
+    ellipse(50, 225, 5, 5);
+
+    fill(0, 0, 0);
+    text("5.0+ Magnitude", 75, 125);
+    text("4.0+ Magnitude", 75, 175); // same y coordinate but different x so it could appear right beside marker
+    text("Below 4.0", 75, 225);
 	}
 }
