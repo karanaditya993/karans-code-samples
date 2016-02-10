@@ -9,6 +9,7 @@ int main(int argc, char* argv[]) {
   }
 
   // Open new document
+  // fp is a file pointer (denoted by *)
   FILE* fp = fopen(argv[1], "r");
 
   // Error handling
