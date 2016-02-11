@@ -1,0 +1,31 @@
+We are checking a dictionary file against a text file to see which words in the text file
+are misspelled. Instead of having one array of all the words in the dictionary, we could
+use a linked list, hash table, or trie.
+
+A hash table is an array of linked lists. We can arrange the array by letters of the alphabet
+so that the size of the array goes from being the amount of words in the dictionary to the
+amount of letters in the alphabet. Each letter will point to a linked list, which consists of nodes.
+Nodes will be structs with word values (array of size largest word in dictionary + null terminator)
+and a pointer to the next node.
+Last node must point to null.
+
+Defining struct:
+typedef struct node {
+  char word[46];
+  struct node* next;
+}
+node;
+
+We want to malloc a node for each word that we encounter in the dictionary,
+which creates space in memory the size of the node type.
+
+We want our linked list to be sorted, so each list pertaining to a letter in the
+alphabet is in alphabetical order
+To do this we must traverse linked lists
+
+node* cursor = head;
+
+while(cursor != NULL) {
+  //do something
+  cursor = cursor->next;
+}
