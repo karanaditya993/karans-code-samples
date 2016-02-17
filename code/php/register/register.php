@@ -1,20 +1,15 @@
-<!--  Rerender page if one item in form is blank-->
-<?php
-  if (empty($_POST["name"]) || empty($_POST["dorm"]) || empty($_POST["gender"])) {
-    header("Location: http://ide50-karanaditya993.cs50.io/froshims.php");
-    exit;
-  }
-?>
-
+<!--  Rerender page if one item in form is blank and show what needs to
+be fixed-->
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>Frosh IMs</title>
   </head>
   <body>
-    <pre>
-      <?php print_r($_POST); ?>
-    </pre>
+    <?php if (empty($_POST["name"]) || empty($_POST["gender"]) || empty($_POST["dorm"])): ?>
+      You must provide your name, gender, and dorm! Go <a href="froshims.php">back</a>.
+    <?php else: ?>
+      You are registered!
+    <?php endif ?>
   </body>
 </html>
