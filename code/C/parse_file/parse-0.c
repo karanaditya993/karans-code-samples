@@ -13,7 +13,7 @@ int main(int argc, char* argv[]) {
     printf("Usage: ./parse-0 [method request_target HTTP_version CRLF]\n");
     return 1;
   }
-  char* request_line = argv[1];
+  char* request_line = argv[];
   if (parse(request_line)) {
     return 0;
   }
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 
 bool parse(const char* line){
   char method[20], request_target[LimitRequestLine], HTTP_version[20], CRLF[20];
-  
+
   if (line == NULL) {
     return false;
   }
