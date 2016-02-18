@@ -32,11 +32,8 @@ int main(int argc, char* argv[]) {
 }
 
 bool parse(const char* line){
-  char method[LimitRequestLine];
-  char request_target[LimitRequestLine];
-  char HTTP_version[LimitRequestLine];
-  char CRLF[LimitRequestLine];
-
+  char method[20], request_target[LimitRequestLine], HTTP_version[20], CRLF[20];
+  
   if (line == NULL) {
     return false;
   }
