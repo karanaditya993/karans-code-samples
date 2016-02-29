@@ -1,0 +1,5 @@
+#! /usr/bin/env php
+<!--  must change permissions in terminal by writing chmod a+x hello-->
+<?php
+  print("hello, world\n");
+?>
