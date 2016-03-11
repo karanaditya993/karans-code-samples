@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MergeSort {
+public class sortingLists {
   public static void main(String[] args) {
     String breakline = System.getProperty("line.separator");
     // Create 8 airport objects
