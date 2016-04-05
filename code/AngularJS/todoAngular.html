@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html data-ng-app>
+<html ng-app="todoApp">
   <head>
     <title>TO DO List</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="bootstrap-theme.css">
+    <script src="angular.js"></script>
+    <script>
+      // Creating a data model
+      var model = {
+        user: "Karan",
+        items: [{ action: "Buy Flowers", done: false},
+                { action: "Get Shoes", done: false},
+                { action: "Collect Tickets", done: true},
+                { action: "Call Joe", done: false}]
+      };
+      var todoApp = angular.module("todoApp", []);
+    </script>
   </head>
 
   <body>
     <div class="page-header">
-      <h1>Karan's To Do List</h1>
+      <h1>To Do List</h1>
     </div>
     <div class="panel">
       <div class="input-group">
@@ -26,10 +38,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Buy Flowers</td><td>No</td></tr>
+            <!-- <tr><td>Buy Flowers</td><td>No</td></tr>
             <tr><td>Get Shoes</td><td>No</td></tr>
             <tr><td>Collect Tickets</td><td>Yes</td></tr>
-            <tr><td>Buy Call Joe</td><td>No</td></tr>
+            <tr><td>Buy Call Joe</td><td>No</td></tr> -->
           </tbody>
         </table>
       </div>
