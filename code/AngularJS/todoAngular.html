@@ -14,13 +14,21 @@
                 { action: "Collect Tickets", done: true},
                 { action: "Call Joe", done: false}]
       };
+      // create a module method
       var todoApp = angular.module("todoApp", []);
+      // create controller method
+      todoApp.controller("ToDoCtrl", function($scope) {
+        $scope.todo = model;
+      })
     </script>
   </head>
 
-  <body>
+  <body ng-controller="ToDoCtrl">
     <div class="page-header">
-      <h1>To Do List</h1>
+      <h1>
+        {{todo.user}}'s To Do List
+        <span class="label label-default">{{todo.items.length}}</span>
+      </h1>
     </div>
     <div class="panel">
       <div class="input-group">
@@ -38,10 +46,11 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr><td>Buy Flowers</td><td>No</td></tr>
-            <tr><td>Get Shoes</td><td>No</td></tr>
-            <tr><td>Collect Tickets</td><td>Yes</td></tr>
-            <tr><td>Buy Call Joe</td><td>No</td></tr> -->
+            <tr ng-repeat="item in todo.items">
+              <td>{{item.action}}</td>
+              <td><input type="checkbox" ng-model="item.done"></td>
+              <td>{{item.done}}</td>
+            </tr>
           </tbody>
         </table>
       </div>
