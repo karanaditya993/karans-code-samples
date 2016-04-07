@@ -16,7 +16,7 @@
       };
       // create a module method
       var todoApp = angular.module("todoApp", []);
-      // create controller method
+      // create controller methods that control the behaviour
       todoApp.controller("ToDoCtrl", function($scope) {
         $scope.todo = model;
 
@@ -28,6 +28,18 @@
           });
           return count;
         }
+
+        $scope.warningLevel = function() {
+          if ($scope.incompleteCount() < 2) {
+            return "label-success";
+          }
+          else if ($scope.incompleteCount() < ($scope.todo.items.length - 1)) {
+            return "label-warning";
+          }
+          else {
+            return "label-danger";
+          }
+        }
       });
     </script>
   </head>
@@ -36,7 +48,7 @@
     <div class="page-header">
       <h1>
         {{todo.user}}'s To Do List
-        <span class="label label-default" ng-hide="incompleteCount() == 0">
+        <span class="label label-default" ng-hide="incompleteCount() == 0" ng-class="warningLevel()">
           {{incompleteCount()}}
         </span>
       </h1>
