@@ -14,33 +14,32 @@
                 { action: "Collect Tickets", done: true},
                 { action: "Call Joe", done: false}]
       };
-      // create a module method
+      // create a module method, without any dependancies
       var todoApp = angular.module("todoApp", []);
-      // create custom filter
-      todoApp.filter("checkedItems", function() {
-        return function(items, showComplete) {
-          var resultArr = [];
-          angular.forEach(items, function(item) {
-            if (item.done == false || showComplete == true) {
-              resultArr.push(item);
-            }
-          });
-          return resultArr;
-        }
-      });
-      // create controller methods that control the behaviour
-      todoApp.controller("ToDoCtrl", function($scope) {
-        $scope.todo = model;
 
+      // create controller methods that control the behaviour, add the application object $scope
+      todoApp.controller("ToDoCtrl", function($scope) {
+        // create object "todo" in scope, attach it to model
+        $scope.todo = model;
+        // create a new function to add todos to the list, taking in some string
+        $scope.addNewItem = function (actionText) {
+          // declare a new todo by pushing the input string into the action attribute, declaring done as false (until complete)
+          var todo = $scope.todo.items.push({ action: actionText, done: false});
+          // ignore, tried to use localstorage to persist data
+          // localStorage.setItem(todo);
+        }
+
+        // declare incomplete function attached to scope
         $scope.incompleteCount = function () {
           var count = 0;
-
+          // for each item in todo model, if the item's done attribute is set to false, add to the count
           angular.forEach($scope.todo.items, function(item) {
             if (!item.done) { count ++ }
           });
           return count;
         }
-
+        // declare warning level function, attached to scope
+        // use return values of bootstrap labels (built-in)
         $scope.warningLevel = function() {
           if ($scope.incompleteCount() < 2) {
             return "label-success";
@@ -52,12 +51,19 @@
             return "label-danger";
           }
         }
-
-        $scope.addNewItem = function (actionText) {
-          var todo = $scope.todo.items.push({ action: actionText, done: false});
-          localStorage.setItem(todo);
-        }
       });
+      // create custom filter
+      // todoApp.filter("checkedItems", function() {
+      //   return function(items, showComplete) {
+      //     var resultArr = [];
+      //     angular.forEach(items, function(item) {
+      //       if (item.done == false || showComplete == true) {
+      //         resultArr.push(item);
+      //       }
+      //     });
+      //     return resultArr;
+      //   }
+      // });
     </script>
   </head>
 
@@ -86,16 +92,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="item in todo.items | checkedItems:showComplete | orderBy:'action'">
+            <tr ng-repeat="item in todo.items">
               <td>{{item.action}}</td>
               <td><input type="checkbox" ng-model="item.done"></td>
             </tr>
           </tbody>
         </table>
 
-        <div class="checkbox-inline">
-          <label><input type="checkbox" ng-model="showComplete">Show Complete</label>
-        </div>
+        <!-- <div class="checkbox-inline"> -->
+          <!-- <label><input type="checkbox" ng-model="showComplete">Show Complete</label> -->
+          <!-- <label><input type="checkbox">Show Complete</label> -->
+        <!-- </div> -->
       </div>
   </body>
 </html>
