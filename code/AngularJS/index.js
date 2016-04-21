@@ -6,7 +6,6 @@ app.use(express.static(__dirname + '/'));
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/todoAngular.html');
-  // res.sendFile('todoAngular.html');
 })
 
 app.listen(port, function(){
